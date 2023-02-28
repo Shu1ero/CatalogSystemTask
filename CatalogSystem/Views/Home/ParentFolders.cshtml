@@ -1,0 +1,31 @@
+﻿@model FoldersModel
+@{
+    ViewData["Title"] = "Parent folders";
+}
+
+
+<div class="text-center">
+
+    <h1>All parent folders</h1>
+    <ul>
+        @foreach (var folder in Model.Folders)
+        {
+                <li>@Html.ActionLink(folder.Name, "Index", "Home", new { id = folder.Id})</li>
+        }
+    </ul>
+    <br />
+    <div>
+        <input value="Download Text File With Folders Structure" type="button" onclick="location.href='@Url.Action("GenerateTextFile", "Home")'" />
+    </div>
+    <br />
+    <br />
+
+    <form asp-controller="Home" asp-action="UploadFile" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="file">Select a file with folders structure to import:</label>
+        <input type="file" class="form-control-file" id="file" name="file">
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </div>
+
+</form>
+</div>
